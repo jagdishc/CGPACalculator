@@ -12,10 +12,7 @@ import org.jdesktop.application.FrameView;
 import org.jdesktop.application.TaskMonitor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
-import java.util.List;
 import javax.swing.Timer;
 import javax.swing.Icon;
 import javax.swing.JDialog;
@@ -100,26 +97,15 @@ public class CGPACalculatorView extends FrameView {
         };
         semesters.addActionListener(actionListener);
         
+        if(semesters.getSelectedItem().toString().equals("1")==true)
+        {
+             sub_credit_9.setVisible(false);
+             sub_grade_9.setVisible(false);
+        }
+        
         sm = new StoreMarks();
-        SpinnerModel snm1 = new SpinnerNumberModel(4, 2, 5, 1);
-        SpinnerModel snm2 = new SpinnerNumberModel(4, 2, 5, 1);
-        SpinnerModel snm3 = new SpinnerNumberModel(4, 2, 5, 1);
-        SpinnerModel snm4 = new SpinnerNumberModel(4, 2, 5, 1);
-        SpinnerModel snm5 = new SpinnerNumberModel(4, 2, 5, 1);
-        SpinnerModel snm6 = new SpinnerNumberModel(4, 2, 5, 1);
-        SpinnerModel snm7 = new SpinnerNumberModel(4, 2, 5, 1);
-        SpinnerModel snm8 = new SpinnerNumberModel(4, 2, 5, 1);
-        SpinnerModel snm9 = new SpinnerNumberModel(4, 2, 5, 1);
-        sub_credit_1.setModel(snm1);
-        sub_credit_2.setModel(snm2);
-        sub_credit_3.setModel(snm3);
-        sub_credit_4.setModel(snm4);
-        sub_credit_5.setModel(snm5);
-        sub_credit_6.setModel(snm6);
-        sub_credit_7.setModel(snm7);
-        sub_credit_8.setModel(snm8);
-        sub_credit_9.setModel(snm9);
-                        
+        reset();
+        semesters.setSelectedIndex(0);                
     }
     
     private String selectedString(ItemSelectable is)
@@ -177,6 +163,7 @@ public class CGPACalculatorView extends FrameView {
         calcCGPA = new javax.swing.JButton();
         menuBar = new javax.swing.JMenuBar();
         javax.swing.JMenu fileMenu = new javax.swing.JMenu();
+        new_data = new javax.swing.JMenuItem();
         javax.swing.JMenuItem exitMenuItem = new javax.swing.JMenuItem();
         javax.swing.JMenu helpMenu = new javax.swing.JMenu();
         javax.swing.JMenuItem aboutMenuItem = new javax.swing.JMenuItem();
@@ -377,6 +364,11 @@ public class CGPACalculatorView extends FrameView {
         fileMenu.setText(resourceMap.getString("fileMenu.text")); // NOI18N
         fileMenu.setName("fileMenu"); // NOI18N
 
+        new_data.setAction(actionMap.get("clear")); // NOI18N
+        new_data.setText(resourceMap.getString("new_data.text")); // NOI18N
+        new_data.setName("new_data"); // NOI18N
+        fileMenu.add(new_data);
+
         exitMenuItem.setAction(actionMap.get("quit")); // NOI18N
         exitMenuItem.setName("exitMenuItem"); // NOI18N
         fileMenu.add(exitMenuItem);
@@ -403,7 +395,7 @@ public class CGPACalculatorView extends FrameView {
         credits_grades = new HashMap<String, String[][]>();    
         String temp1, temp2, temp[][];
         
-        if(sem.equals("7")==false && sem.equals("8") == false && sem.equals("1")==false)
+        if(sem.equals("7")==false && sem.equals("1")==false)
         {
               temp1 = sub_credit_1.getValue().toString();                
               temp2 = sub_grade_1.getSelectedItem().toString();
@@ -533,14 +525,15 @@ public class CGPACalculatorView extends FrameView {
     {
         addValues();
         sm.addValue(semesters.getSelectedItem().toString(), credits_grades);        
-        
+        reset();
     }
 
     @Action
     public void calculateMyGPA() 
     {
+        String selected = semesters.getSelectedItem().toString();
         continueAddingMarks();
-        calc = new Calculator(semesters.getSelectedItem().toString(), sm);
+        calc = new Calculator(selected, sm);
         calc.calculateGPA();
     }
 
@@ -548,7 +541,38 @@ public class CGPACalculatorView extends FrameView {
     public void calculateMyCGPA() 
     {
         continueAddingMarks();
-        calc = new Calculator(sm);        
+        calc = new Calculator(sm);    
+        calc.calculateCGPA();
+    }
+    
+    private void reset()
+    {
+        //semesters.setSelectedIndex(semesters.getSelectedIndex() + 1);        
+        sub_credit_1.setModel(snm1);
+        sub_credit_2.setModel(snm2);
+        sub_credit_3.setModel(snm3);
+        sub_credit_4.setModel(snm4);
+        sub_credit_5.setModel(snm5);
+        sub_credit_6.setModel(snm6);
+        sub_credit_7.setModel(snm7);
+        sub_credit_8.setModel(snm8);
+        sub_credit_9.setModel(snm9);
+        
+        sub_grade_1.setSelectedIndex(0);
+        sub_grade_2.setSelectedIndex(0);
+        sub_grade_3.setSelectedIndex(0);
+        sub_grade_4.setSelectedIndex(0);
+        sub_grade_5.setSelectedIndex(0);
+        sub_grade_6.setSelectedIndex(0);
+        sub_grade_7.setSelectedIndex(0);
+        sub_grade_8.setSelectedIndex(0);
+        sub_grade_8.setSelectedIndex(0);
+    }
+
+    @Action
+    public void clear() 
+    {
+        sm = new StoreMarks();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -560,6 +584,7 @@ public class CGPACalculatorView extends FrameView {
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JMenuBar menuBar;
+    private javax.swing.JMenuItem new_data;
     private javax.swing.JLabel selectGradeLabel;
     private javax.swing.JLabel selectSemLabel;
     private javax.swing.JComboBox semesters;
@@ -592,4 +617,13 @@ public class CGPACalculatorView extends FrameView {
     private JDialog aboutBox;
     public HashMap<String, String[][]> credits_grades;
     public Calculator calc;
+    private SpinnerModel snm1 = new SpinnerNumberModel(4, 2, 5, 1);
+    private SpinnerModel snm2 = new SpinnerNumberModel(4, 2, 5, 1);
+    private SpinnerModel snm3 = new SpinnerNumberModel(4, 2, 5, 1);
+    private SpinnerModel snm4 = new SpinnerNumberModel(4, 2, 5, 1);
+    private SpinnerModel snm5 = new SpinnerNumberModel(4, 2, 5, 1);
+    private SpinnerModel snm6 = new SpinnerNumberModel(4, 2, 5, 1);
+    private SpinnerModel snm7 = new SpinnerNumberModel(4, 2, 5, 1);
+    private SpinnerModel snm8 = new SpinnerNumberModel(4, 2, 5, 1);
+    private SpinnerModel snm9 = new SpinnerNumberModel(4, 2, 5, 1);
 }

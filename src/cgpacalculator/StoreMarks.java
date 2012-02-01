@@ -23,10 +23,16 @@ public class StoreMarks
             {
                 grades.put(sem, credits_grades);
             }
+            else
+            {
+                String message = "You have already entered the grades for semester" + sem + " to add new value choose File->New and start entering new values.";
+                MsgBox msg = new MsgBox(message);
+            }
         }
         catch(Exception e)
         {
-            e.printStackTrace();
+            Error error = new Error(e.getMessage());
+            error.setVisible(true);
         }
     }
 }

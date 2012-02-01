@@ -11,6 +11,7 @@ public class Calculator
 {
     HashMap<String, Integer> grade_values;
     HashMap<String, String[][]> value;
+    HashMap<String, HashMap<String, String[][]>> value_cgpa;
     
     private void init()
     {
@@ -32,8 +33,8 @@ public class Calculator
     
     public Calculator(StoreMarks sm)
     {
-        init();
-        
+        init();        
+        value_cgpa = sm.grades;
     }
     
     public void calculateGPA()
@@ -60,7 +61,27 @@ public class Calculator
     
     public void calculateCGPA()
     {
-        
+        Double total_credits = 0.0, marks = 0.0, cgpa;
+        HashMap<String, String[][]> temp;
+        for(Iterator<String> iter = value_cgpa.keySet().iterator();iter.hasNext();)
+        {
+            String tmp = iter.next();
+            temp = value_cgpa.get(tmp);
+            for(Iterator<String> it = temp.keySet().iterator();it.hasNext();)
+            {
+                String sub = it.next();
+                String temp_array[][] = temp.get(sub);
+                int crd = Integer.parseInt(temp_array[0][0]);
+                String grd = temp_array[0][1];
+                if(grd.equals("U") == false)
+                {
+                    marks += crd*grade_values.get(grd);
+                    total_credits += crd;
+                }
+            }          
+        }
+         cgpa = marks/total_credits;
+         System.out.println("Your CGPA is: " + cgpa);
     }
     
 }
