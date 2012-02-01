@@ -57,6 +57,7 @@ public class MsgBox extends javax.swing.JFrame {
         msgTxt.setBackground(resourceMap.getColor("msgTxt.background")); // NOI18N
         msgTxt.setColumns(20);
         msgTxt.setRows(5);
+        msgTxt.setWrapStyleWord(true);
         msgTxt.setName("msgTxt"); // NOI18N
         jScrollPane1.setViewportView(msgTxt);
 

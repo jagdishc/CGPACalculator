@@ -88,11 +88,30 @@ public class CGPACalculatorView extends FrameView {
                     sub_credit_9.setVisible(false);
                     sub_grade_9.setVisible(false);
                 }
+                else if(selectedString(is).equals("8"))
+                {
+                    sub_credit_9.setVisible(false);
+                    sub_grade_9.setVisible(false);
+                    sub_credit_8.setVisible(false);
+                    sub_grade_8.setVisible(false);
+                    sub_credit_7.setVisible(false);
+                    sub_grade_7.setVisible(false);
+                    sub_credit_6.setVisible(false);
+                    sub_grade_6.setVisible(false);
+                    sub_credit_5.setVisible(false);
+                    sub_grade_5.setVisible(false);
+                    sub_credit_4.setVisible(false);
+                    sub_grade_4.setVisible(false);
+                    sub_credit_3.setVisible(false);
+                    sub_grade_3.setVisible(false);
+                }
                 else
                 {
                     sub_credit_9.setVisible(true);
                     sub_grade_9.setVisible(true);
                 }
+                
+                statusLabel.setText("Add grades for semester " + selectedString(is));
             }
         };
         semesters.addActionListener(actionListener);
@@ -105,7 +124,9 @@ public class CGPACalculatorView extends FrameView {
         
         sm = new StoreMarks();
         reset();
-        semesters.setSelectedIndex(0);                
+        semesters.setSelectedIndex(0);    
+        
+        statusLabel.setText("Add grades for semester " + semesters.getSelectedItem().toString());
     }
     
     private String selectedString(ItemSelectable is)
@@ -161,6 +182,7 @@ public class CGPACalculatorView extends FrameView {
         continue_btn = new javax.swing.JButton();
         calcGPA = new javax.swing.JButton();
         calcCGPA = new javax.swing.JButton();
+        statusLabel = new javax.swing.JLabel();
         menuBar = new javax.swing.JMenuBar();
         javax.swing.JMenu fileMenu = new javax.swing.JMenu();
         new_data = new javax.swing.JMenuItem();
@@ -248,6 +270,10 @@ public class CGPACalculatorView extends FrameView {
         calcCGPA.setText(resourceMap.getString("calcCGPA.text")); // NOI18N
         calcCGPA.setName("calcCGPA"); // NOI18N
 
+        statusLabel.setFont(resourceMap.getFont("statusLabel.font")); // NOI18N
+        statusLabel.setText(resourceMap.getString("statusLabel.text")); // NOI18N
+        statusLabel.setName("statusLabel"); // NOI18N
+
         javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
         mainPanel.setLayout(mainPanelLayout);
         mainPanelLayout.setHorizontalGroup(
@@ -269,7 +295,6 @@ public class CGPACalculatorView extends FrameView {
             .addGroup(mainPanelLayout.createSequentialGroup()
                 .addGap(42, 42, 42)
                 .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(continue_btn)
                     .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(sub_credit_9, javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(sub_credit_8, javax.swing.GroupLayout.Alignment.LEADING)
@@ -279,7 +304,8 @@ public class CGPACalculatorView extends FrameView {
                         .addComponent(sub_credit_4, javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(sub_credit_3, javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(sub_credit_2, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(sub_credit_1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 55, Short.MAX_VALUE)))
+                        .addComponent(sub_credit_1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 55, Short.MAX_VALUE))
+                    .addComponent(continue_btn))
                 .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(mainPanelLayout.createSequentialGroup()
                         .addGap(137, 137, 137)
@@ -294,11 +320,12 @@ public class CGPACalculatorView extends FrameView {
                             .addComponent(sub_grade_2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(sub_grade_1, 0, 84, Short.MAX_VALUE)))
                     .addGroup(mainPanelLayout.createSequentialGroup()
-                        .addGap(31, 31, 31)
+                        .addGap(29, 29, 29)
                         .addComponent(calcGPA)
-                        .addGap(38, 38, 38)
+                        .addGap(37, 37, 37)
                         .addComponent(calcCGPA)))
-                .addContainerGap(58, Short.MAX_VALUE))
+                .addContainerGap(61, Short.MAX_VALUE))
+            .addComponent(statusLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 450, Short.MAX_VALUE)
         );
         mainPanelLayout.setVerticalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -351,12 +378,14 @@ public class CGPACalculatorView extends FrameView {
                 .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(sub_credit_9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(sub_grade_9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
                 .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(continue_btn)
                     .addComponent(calcGPA)
                     .addComponent(calcCGPA))
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(statusLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(8, 8, 8))
         );
 
         menuBar.setName("menuBar"); // NOI18N
@@ -460,6 +489,22 @@ public class CGPACalculatorView extends FrameView {
               temp[0][1] = temp2;              
               credits_grades.put("sub_9", temp);
         }
+        else if(sem.equals("8"))
+        {
+              temp1 = sub_credit_1.getValue().toString();                
+              temp2 = sub_grade_1.getSelectedItem().toString();
+              temp = new String[1][2];
+              temp[0][0] = temp1;
+              temp[0][1] = temp2;              
+              credits_grades.put("sub_1", temp);
+              
+              temp1 = sub_credit_2.getValue().toString();
+              temp2 = sub_grade_2.getSelectedItem().toString();
+              temp = new String[1][2];
+              temp[0][0] = temp1;
+              temp[0][1] = temp2;              
+              credits_grades.put("sub_2", temp);
+        }
         else
         {
             
@@ -523,26 +568,54 @@ public class CGPACalculatorView extends FrameView {
     @Action
     public void continueAddingMarks() 
     {
-        addValues();
-        sm.addValue(semesters.getSelectedItem().toString(), credits_grades);        
-        reset();
+        String selected = semesters.getSelectedItem().toString();
+        if(sm.grades.containsKey(selected) == false)
+        {            
+            addValues();
+            sm.addValue(selected, credits_grades);        
+            reset(); 
+        }
+        else
+        {
+            statusLabel.setText("Cannot enter duplicated data. Select different semester and add grades.");
+        }
+               
     }
 
     @Action
     public void calculateMyGPA() 
     {
         String selected = semesters.getSelectedItem().toString();
-        continueAddingMarks();
-        calc = new Calculator(selected, sm);
-        calc.calculateGPA();
+        if(sm.grades.containsKey(selected) == false)
+        {
+            continueAddingMarks();
+            calc = new Calculator(selected, sm);
+            calc.calculateGPA();
+        }
+        else
+        {
+            calc = new Calculator(selected, sm);
+            calc.calculateGPA();
+            //statusLabel.setText("Cannot enter duplicated data. Select different semester and add grades.");
+        }
     }
 
     @Action
     public void calculateMyCGPA() 
     {
-        continueAddingMarks();
-        calc = new Calculator(sm);    
-        calc.calculateCGPA();
+        String selected = semesters.getSelectedItem().toString();
+        if(sm.grades.containsKey(selected) == false)
+        {
+            continueAddingMarks();
+            calc = new Calculator(sm);    
+            calc.calculateCGPA();
+        }
+        else
+        {
+            calc = new Calculator(sm);    
+            calc.calculateCGPA();
+            //statusLabel.setText("Cannot enter duplicated data. Select different semester and add grades.");
+        }
     }
     
     private void reset()
@@ -567,12 +640,15 @@ public class CGPACalculatorView extends FrameView {
         sub_grade_7.setSelectedIndex(0);
         sub_grade_8.setSelectedIndex(0);
         sub_grade_8.setSelectedIndex(0);
+        
+        statusLabel.setText("Select different semester and continue adding your grades.");
     }
 
     @Action
     public void clear() 
     {
         sm = new StoreMarks();
+        statusLabel.setText("Select the semester and add your grades.");
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -588,6 +664,7 @@ public class CGPACalculatorView extends FrameView {
     private javax.swing.JLabel selectGradeLabel;
     private javax.swing.JLabel selectSemLabel;
     private javax.swing.JComboBox semesters;
+    private javax.swing.JLabel statusLabel;
     private javax.swing.JSpinner sub_credit_1;
     private javax.swing.JSpinner sub_credit_2;
     private javax.swing.JSpinner sub_credit_3;
