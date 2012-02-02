@@ -109,6 +109,18 @@ public class CGPACalculatorView extends FrameView {
                 {
                     sub_credit_9.setVisible(true);
                     sub_grade_9.setVisible(true);
+                    sub_credit_8.setVisible(true);
+                    sub_grade_8.setVisible(true);
+                    sub_credit_7.setVisible(true);
+                    sub_grade_7.setVisible(true);
+                    sub_credit_6.setVisible(true);
+                    sub_grade_6.setVisible(true);
+                    sub_credit_5.setVisible(true);
+                    sub_grade_5.setVisible(true);
+                    sub_credit_4.setVisible(true);
+                    sub_grade_4.setVisible(true);
+                    sub_credit_3.setVisible(true);
+                    sub_grade_3.setVisible(true);
                 }
                 
                 statusLabel.setText("Add grades for semester " + selectedString(is));
