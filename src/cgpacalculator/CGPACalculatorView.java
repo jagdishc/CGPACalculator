@@ -101,9 +101,8 @@ public class CGPACalculatorView extends FrameView {
                     sub_credit_5.setVisible(false);
                     sub_grade_5.setVisible(false);
                     sub_credit_4.setVisible(false);
-                    sub_grade_4.setVisible(false);
-                    sub_credit_3.setVisible(false);
-                    sub_grade_3.setVisible(false);
+                    sub_grade_4.setVisible(false);               
+                    
                 }
                 else
                 {
@@ -118,9 +117,7 @@ public class CGPACalculatorView extends FrameView {
                     sub_credit_5.setVisible(true);
                     sub_grade_5.setVisible(true);
                     sub_credit_4.setVisible(true);
-                    sub_grade_4.setVisible(true);
-                    sub_credit_3.setVisible(true);
-                    sub_grade_3.setVisible(true);
+                    sub_grade_4.setVisible(true);                    
                 }
                 
                 statusLabel.setText("Add grades for semester " + selectedString(is));
@@ -516,6 +513,14 @@ public class CGPACalculatorView extends FrameView {
               temp[0][0] = temp1;
               temp[0][1] = temp2;              
               credits_grades.put("sub_2", temp);
+              
+              temp1 = sub_credit_3.getValue().toString();
+              temp2 = sub_grade_3.getSelectedItem().toString();
+              temp = new String[1][2];
+              temp[0][0] = temp1;
+              temp[0][1] = temp2;              
+              credits_grades.put("sub_3", temp);
+              
         }
         else
         {
@@ -632,7 +637,8 @@ public class CGPACalculatorView extends FrameView {
     
     private void reset()
     {
-        //semesters.setSelectedIndex(semesters.getSelectedIndex() + 1);        
+        //semesters.setSelectedIndex(semesters.getSelectedIndex() + 1);  
+        
         sub_credit_1.setModel(snm1);
         sub_credit_2.setModel(snm2);
         sub_credit_3.setModel(snm3);
@@ -706,13 +712,13 @@ public class CGPACalculatorView extends FrameView {
     private JDialog aboutBox;
     public HashMap<String, String[][]> credits_grades;
     public Calculator calc;
-    private SpinnerModel snm1 = new SpinnerNumberModel(4, 2, 5, 1);
-    private SpinnerModel snm2 = new SpinnerNumberModel(4, 2, 5, 1);
-    private SpinnerModel snm3 = new SpinnerNumberModel(4, 2, 5, 1);
-    private SpinnerModel snm4 = new SpinnerNumberModel(4, 2, 5, 1);
-    private SpinnerModel snm5 = new SpinnerNumberModel(4, 2, 5, 1);
-    private SpinnerModel snm6 = new SpinnerNumberModel(4, 2, 5, 1);
-    private SpinnerModel snm7 = new SpinnerNumberModel(4, 2, 5, 1);
-    private SpinnerModel snm8 = new SpinnerNumberModel(4, 2, 5, 1);
-    private SpinnerModel snm9 = new SpinnerNumberModel(4, 2, 5, 1);
+    private SpinnerModel snm1 = new SpinnerNumberModel(4, 2, 6, 1);
+    private SpinnerModel snm2 = new SpinnerNumberModel(4, 2, 6, 1);
+    private SpinnerModel snm3 = new SpinnerNumberModel(4, 2, 6, 1);
+    private SpinnerModel snm4 = new SpinnerNumberModel(4, 2, 6, 1);
+    private SpinnerModel snm5 = new SpinnerNumberModel(4, 2, 6, 1);
+    private SpinnerModel snm6 = new SpinnerNumberModel(4, 2, 6, 1);
+    private SpinnerModel snm7 = new SpinnerNumberModel(4, 2, 6, 1);
+    private SpinnerModel snm8 = new SpinnerNumberModel(4, 2, 6, 1);
+    private SpinnerModel snm9 = new SpinnerNumberModel(4, 2, 6, 1);
 }
