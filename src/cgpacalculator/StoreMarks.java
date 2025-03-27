@@ -1,7 +1,6 @@
 package cgpacalculator;
 
 import java.util.HashMap;
-
 /**
  *
  * @author Jagdish
